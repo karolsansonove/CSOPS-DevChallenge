@@ -1,0 +1,64 @@
+﻿@using CSOPS.DevChallenge.Services;
+@using CSOPS.DevChallenge.Context.Entities;
+@inject IChatInfoService chatInfoService;
+
+@if (chatInfo != null)
+{
+	<div class="row mx-5">
+		<ul class="list-group d-flex">
+			<li class="list-group-item text-center bg-success-subtle text-success-emphasis">Chat @chatInfo.ChatId</li>
+			<li class="list-group-item">
+				Contact name: @chatInfo.Contact.Name
+				<a class="btn btn-outline-primary" href="/EditContact/@chatInfo.ContactId" role="button">Edit contact details</a>
+			</li>
+			<li class="list-group-item">Contact phone number: @chatInfo.Contact.PhoneNumber</li>
+			<li class="list-group-item">Last message at @chatInfo.LastMessageTime</li>
+			<li class="list-group-item">Created at @chatInfo.CreatedAtUtc</li>
+			<li class="list-group-item">Current member Id @chatInfo.CurrentMemberId</li>
+			<li class="list-group-item">Last member Id @chatInfo.LastAttendantId</li>
+			<li class="list-group-item">IsWaiting @chatInfo.IsWaiting</li>
+		</ul>
+
+		<div class="card text-bg-light my-3 mw-100">
+			<div class="card-header d-flex justify-content-between flex-wrap">
+				<span>Last message</span>
+				@if (chatInfo.WaitingSince != null)
+				{
+					<span class="badge text-bg-danger">Waiting for @chatInfo.calculateWaitingTime()</span>
+				}
+			</div>
+			<div class="card-body">
+				<p class="mb-2 fs-6 text-light-emphasis">
+					@if (chatInfo.IsWaiting)
+						@($"{chatInfo.Contact.Name} said:")
+					else
+						@($"{chatInfo.LastMessageSource} said:")
+				</p>
+				<p class="card-text">"@chatInfo.LastMessageContent"</p>
+				<p class="mb-2 fs-6 text-light-emphasis">Send by @chatInfo.LastMessageSource at @chatInfo.LastMessageTime</p>
+			</div>
+		</div>
+	</div>
+}
+
+else
+{
+	
+	@if (isLoading)
+	{
+	<div class="d-flex justify-content-center">
+			<div class="spinner-grow" role="status">
+				<span class="visually-hidden">Loading...</span>
+			</div>
+	</div>
+	}
+	else
+	{
+		<h5 class="text-center fw-light">Search to display chat information</h5>
+	}
+}
+
+@code {
+	[Parameter] public ChatInfo? chatInfo { get; set; }
+	[Parameter] public bool isLoading { get; set; }
+}

@@ -1,0 +1,147 @@
+﻿@page "/EditContact/{ContactId}"
+@using CSOPS.DevChallenge.Services;
+@using CSOPS.DevChallenge.Clients.Models.ContactModels;
+@using CSOPS.DevChallenge.Clients;
+@inject IContactService contactService;
+@inject ITalkClient talkClient;
+
+<nav class="navbar bg-body-tertiary mb-3">
+    <div class="container-fluid">
+        <a class="navbar-brand text-primary" href="/">CSOPS.DevChallenge</a>
+    </div>
+</nav>
+
+<h3>Edit Contact</h3>
+@if (somethingBadHappened)
+{
+    <SomethingBadHappened somethingBadHappened="@somethingBadHappened" error="@error" />
+}
+@if (contact != null)
+{
+    <EditForm Model="@contact" OnValidSubmit="@HandleSubmit">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        @if (success)
+        {
+            <div class="alert alert-success" role="alert">
+                Data changed successfully
+            </div>
+        }
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label for="name" class="form-label">Name:</label>
+                <InputText id="name" class="form-control" @bind-Value="contact.Name" />
+                <ValidationMessage For="@(() => contact.Name)" />
+            </div>
+
+            <div class="col-md-6">
+                <label for="email">Email:</label>
+                <InputText id="email" type="email" class="form-control" @bind-Value="contact.Email" />
+                <ValidationMessage For="@(() => contact.Email)" />
+            </div>
+
+            <div class="col-md-6">
+                <label for="gender">Gender:</label>
+                <InputText id="gender" class="form-control" @bind-Value="contact.Gender" />
+                <ValidationMessage For="@(() => contact.Gender)" />
+            </div>
+
+            <h4>Address</h4>
+
+            <div class="col-md-12">
+                <label for="addressLine1">Address 1:</label>
+                <InputText id="addressLine1" class="form-control" @bind-Value="contact.Address.AddressLine1" />
+                <ValidationMessage For="@(() => contact.Address.AddressLine1)" />
+            </div>
+
+            <div class="col-md-12">
+                <label for="addressLine2">Address 2:</label>
+                <InputText id="addressLine2" class="form-control" @bind-Value="contact.Address.AddressLine2" />
+                <ValidationMessage For="@(() => contact.Address.AddressLine2)" />
+            </div>
+
+            <div class="col-md-6">
+                <label for="city">City:</label>
+                <InputText id="city" class="form-control" @bind-Value="contact.Address.City" />
+                <ValidationMessage For="@(() => contact.Address.City)" />
+            </div>
+
+            <div class="col-md-6">
+                <label for="country">Country:</label>
+                <InputText id="country" class="form-control" @bind-Value="contact.Address.Country" />
+                <ValidationMessage For="@(() => contact.Address.Country)" />
+            </div>
+
+            <div class="col-md-4">
+                <label for="zipCode">Zip Code:</label>
+                <InputText id="zipCode" class="form-control" @bind-Value="contact.Address.ZipCode" />
+                <ValidationMessage For="@(() => contact.Address.ZipCode)" />
+            </div>
+
+            <div class="col-md-2">
+                <label for="state">State:</label>
+                <InputText id="state" class="form-control" @bind-Value="contact.Address.State" />
+                <ValidationMessage For="@(() => contact.Address.State)" />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+    </EditForm>
+}
+else
+{
+    <div class="d-flex justify-content-center">
+        <div class="spinner-grow" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter] public string ContactId { get; set; } = string.Empty;
+    private Contact? contact;
+    private bool somethingBadHappened = false;
+    private string? error = null;
+    private bool success = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // buscar os dados do contato a partir do ContactId
+        contact = await talkClient.GetContactAsync(ContactId);
+
+        if (contact!.Address == null)
+        {
+            contact.Address = new Address(); // Inicializa um novo objeto de endereço
+        }
+    }
+
+    private async Task HandleSubmit()
+    {
+        // atualizar o contato
+        try
+        {
+            await talkClient.UpdateContactAsync(contact!);
+            success = true;
+        }
+        catch (Exception e)
+        {
+            somethingBadHappened = true;
+            success = false;
+            error = e.Message;
+        }
+    }
+
+    // Contact? contact = null;
+
+    /*
+    private async Task HandleValidSubmit()
+        {
+        // Aqui você pode adicionar a lógica para enviar os dados ao backend
+        // por exemplo, uma chamada à API para atualizar o contato
+        // await HttpClient.PutAsJsonAsync($"api/contacts/{contact.Id}", contact);
+
+        NavigationManager.NavigateTo("/success"); // Redireciona para uma página de sucesso
+    }
+    */
+}

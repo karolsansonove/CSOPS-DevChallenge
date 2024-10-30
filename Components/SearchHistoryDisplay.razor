@@ -1,0 +1,62 @@
+﻿@using CSOPS.DevChallenge.Context.Entities
+@using CSOPS.DevChallenge.Services
+@inject IChatInfoService chatInfoService;
+@inject ISearchHistoryInfoService searchHistoryInfoService;
+
+@if (searchHistory != null && searchHistory.Count > 0)
+{
+	<h3 class="fw-light mt-5 mb-2 mx-5">Search history</h3>
+	@foreach (var search in searchHistory)
+	{
+		<div class="card text-bg-secondary mb-3 mx-5">
+			<div class="card-header">
+				<span class="badge text-bg-light">@($"{search.SearchHistoryId}. ChatId {search.ChatId}")</span>
+			</div>
+			<div class="card-body">
+				<div class="d-flex flex-wrap justify-content-between bg-light text-light-emphasis rounded p-2">
+					<div class="m-2 text-center">
+						<p class="m-0">Waiting</p>
+						@if (@search.IsWaiting)
+						{
+							<p class="badge text-bg-danger">Yes</p>
+						}
+						else
+						{
+							<p class="badge text-bg-success">No</p>
+						}
+					</div>
+					<div class="m-2 text-center">
+						<p class="m-0">LastAttendantId</p>
+						<p class="badge text-bg-secondary">@(search.LastAttendantId == null ? "Null" : search.LastAttendantId)</p>
+					</div>
+					<div class="m-2 text-center">
+						<p class="m-0">LastMessageSource</p>
+						<p class="badge text-bg-secondary">@(search.LastMessageSource == null ? "Null" : search.LastMessageSource)</p>
+					</div>
+					<div class="m-2 text-center">
+						<p class="m-0">LastMessageState</p>
+						<p class="badge text-bg-secondary">@(search.LastMessageState == null ? "Null" : search.LastMessageState)</p>
+					</div>
+					<div class="m-2 text-center">
+						<p class="m-0">LastMessageTime</p>
+						<p class="badge text-bg-secondary">@(search.LastMessageTime == null ? "Null" : search.LastMessageTime)</p>
+					</div>
+					<div class="m-2 text-center">
+						<p class="m-0">MemberId</p>
+						<p class="badge text-bg-secondary">@(search.MemberId == null ? "Null" : search.MemberId)</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	}
+
+}
+
+@code {
+	List<SearchHistoryInfo> searchHistory = new List<SearchHistoryInfo>();
+
+	protected override void OnInitialized()
+	{
+		searchHistory = searchHistoryInfoService.GetHistory().ToList();
+	}
+}

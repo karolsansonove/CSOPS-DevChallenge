@@ -1,0 +1,10 @@
+﻿@if (somethingBadHappened)
+{
+	<p class="mt-3">Something bad happened... check it out:</p>
+	<code class="w-1/2 bg-gray-800 text-red-600 rounded-md p-3 mt-3">@error</code>
+}
+
+@code {
+	[Parameter] public bool somethingBadHappened { get; set; }
+	[Parameter] public string? error { get; set; }
+}

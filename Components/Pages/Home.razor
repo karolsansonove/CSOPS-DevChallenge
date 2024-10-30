@@ -1,0 +1,75 @@
+﻿@page "/"
+@using CSOPS.DevChallenge.Context.Entities
+@using CSOPS.DevChallenge.Services
+@inject IChatInfoService chatInfoService;
+@inject ISearchHistoryInfoService searchHistoryInfoService;
+
+<PageTitle>Home</PageTitle>
+
+<div class="d-flex flex-column">
+	<nav class="navbar bg-body-tertiary mb-3">
+		<div class="container-fluid">
+			<a class="navbar-brand text-primary">CSOPS.DevChallenge</a>
+			<form @onsubmit=GetChatInfo class="d-flex" role="search">
+				<InputText class="form-control me-2" id="chatId" @bind-Value="chatId" DisplayName="ChatId" placeholder="Chat ID" aria-label="Search" />
+				<button class="btn btn-outline-success" type="submit">Search</button>
+			</form>
+		</div>
+	</nav>
+
+	@if (somethingBadHappened)
+	{
+		<SomethingBadHappened somethingBadHappened="@somethingBadHappened" error="@error" />
+	}
+
+	@if (chatNotFound)
+	{
+		<ChatNotFound chatNotFound="@chatNotFound"/>
+	}
+	
+	<ChatInfoDisplay chatInfo="@chatInfo" isLoading="@isLoading" />
+
+	<SearchHistoryDisplay/>
+</div>
+
+@code{
+	string? chatId = null;
+	ChatInfo? chatInfo = null;
+	bool somethingBadHappened = false;
+	bool chatNotFound = false;
+	bool isLoading = false;
+	string? error = null;
+
+
+	async Task GetChatInfo()
+	{
+		try
+		{
+			if (string.IsNullOrEmpty(chatId))
+				return;
+
+			chatNotFound = false;
+			somethingBadHappened = false;
+			error = null;
+			chatInfo = null;
+			isLoading = true;
+
+			chatInfo = await chatInfoService.GetAsync(chatId);
+
+			if (chatInfo == null)
+			{
+				chatNotFound = true;
+			}
+
+		} catch (Exception e)
+		{
+			somethingBadHappened = true;
+			error = e.Message;
+		}
+		finally
+		{
+			isLoading = false;
+		}
+
+	}
+}
