@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\ubuser\\source\\repos\\CSOPS.DevChallenge\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\CSOPS.DevChallenge.bundle.scp.css",
+      "PackagePath": "staticwebassets\\CSOPS.DevChallenge.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\ubuser\\source\\repos\\CSOPS.DevChallenge\\wwwroot\\app.css",
+      "PackagePath": "staticwebassets\\app.css"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.CSOPS.DevChallenge.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.CSOPS.DevChallenge.props",
+      "PackagePath": "build\\CSOPS.DevChallenge.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.CSOPS.DevChallenge.props",
+      "PackagePath": "buildMultiTargeting\\CSOPS.DevChallenge.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.CSOPS.DevChallenge.props",
+      "PackagePath": "buildTransitive\\CSOPS.DevChallenge.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

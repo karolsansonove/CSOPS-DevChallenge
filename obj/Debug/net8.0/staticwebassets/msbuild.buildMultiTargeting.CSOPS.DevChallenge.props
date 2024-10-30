@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\CSOPS.DevChallenge.props" />
+</Project>

@@ -17,8 +17,7 @@ public class ChatInfoService(
 	ITalkClient talkClient, 
 	ChallengeContext context,
 	IContactInfoService contactInfoService,
-	ISearchHistoryInfoService searchHistoryInfoService,
-	IScheduledMessageInfoService scheduledMessageInfoService) : IChatInfoService
+	ISearchHistoryInfoService searchHistoryInfoService) : IChatInfoService
 {
 	public async Task<ChatInfo?> GetAsync(string chatId)
 	{
@@ -44,7 +43,6 @@ public class ChatInfoService(
 		}
 
 		await searchHistoryInfoService.AddToContextAsync(chat); // adicionado aqui porque precisa executar somente depois do chat existir no contexto
-		//scheduledMessageInfoService.AddScheduledMessagesAsync(chat.Contact, contactInfo);
 
 		await context.SaveChangesAsync();
 

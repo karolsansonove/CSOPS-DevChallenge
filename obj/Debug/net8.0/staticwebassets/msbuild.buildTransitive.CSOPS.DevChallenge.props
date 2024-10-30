@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\CSOPS.DevChallenge.props" />
+</Project>

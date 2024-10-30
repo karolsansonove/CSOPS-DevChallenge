@@ -8,7 +8,6 @@ public class ChallengeContext : DbContext
 	public DbSet<ChatInfo> ChatInfos { get; private set; }
 	public DbSet<ContactInfo> ContactInfos { get; private set; }
 	public DbSet<NoteInfo> NoteInfos { get; private set; }
-	public DbSet<ScheduledMessageInfo> ScheduledMessageInfos { get; private set; }
 	public DbSet<SearchHistoryInfo> SearchHistoryInfos { get; private set; }
 
 	public ChallengeContext(DbContextOptions<ChallengeContext> options) : base(options) { }
@@ -23,11 +22,6 @@ public class ChallengeContext : DbContext
 			.HasForeignKey(c => c.ContactId); // definindo a Foreign Key
 
 		modelBuilder.Entity<NoteInfo>()
-			.HasOne(c => c.Contact)
-			.WithMany()
-			.HasForeignKey(c => c.ContactId);
-
-		modelBuilder.Entity<ScheduledMessageInfo>()
 			.HasOne(c => c.Contact)
 			.WithMany()
 			.HasForeignKey(c => c.ContactId);

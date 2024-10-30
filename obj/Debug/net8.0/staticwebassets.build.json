@@ -1,0 +1,77 @@
+{
+  "Version": 1,
+  "Hash": "I7tQr+hbOMgLVnqO9fMf+EAm4CJg6LafZ+GGxLw1Oqg=",
+  "Source": "CSOPS.DevChallenge",
+  "BasePath": "_content/CSOPS.DevChallenge",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "CSOPS.DevChallenge\\wwwroot",
+      "Source": "CSOPS.DevChallenge",
+      "ContentRoot": "C:\\Users\\ubuser\\source\\repos\\CSOPS.DevChallenge\\wwwroot\\",
+      "BasePath": "_content/CSOPS.DevChallenge",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\ubuser\\source\\repos\\CSOPS.DevChallenge\\obj\\Debug\\net8.0\\scopedcss\\bundle\\CSOPS.DevChallenge.styles.css",
+      "SourceId": "CSOPS.DevChallenge",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\ubuser\\source\\repos\\CSOPS.DevChallenge\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "BasePath": "_content/CSOPS.DevChallenge",
+      "RelativePath": "CSOPS.DevChallenge.styles.css",
+      "AssetKind": "All",
+      "AssetMode": "CurrentProject",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ApplicationBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\ubuser\\source\\repos\\CSOPS.DevChallenge\\obj\\Debug\\net8.0\\scopedcss\\bundle\\CSOPS.DevChallenge.styles.css"
+    },
+    {
+      "Identity": "C:\\Users\\ubuser\\source\\repos\\CSOPS.DevChallenge\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\CSOPS.DevChallenge.bundle.scp.css",
+      "SourceId": "CSOPS.DevChallenge",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\ubuser\\source\\repos\\CSOPS.DevChallenge\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
+      "BasePath": "_content/CSOPS.DevChallenge",
+      "RelativePath": "CSOPS.DevChallenge.bundle.scp.css",
+      "AssetKind": "All",
+      "AssetMode": "Reference",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ProjectBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\ubuser\\source\\repos\\CSOPS.DevChallenge\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\CSOPS.DevChallenge.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\ubuser\\source\\repos\\CSOPS.DevChallenge\\wwwroot\\app.css",
+      "SourceId": "CSOPS.DevChallenge",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ubuser\\source\\repos\\CSOPS.DevChallenge\\wwwroot\\",
+      "BasePath": "_content/CSOPS.DevChallenge",
+      "RelativePath": "app.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\app.css"
+    }
+  ]
+}
