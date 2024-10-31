@@ -17,7 +17,7 @@ public class Contact
     public string? ProfilePictureUrl { get; set; }
     public bool IsOptIn { get; set; }
     public bool IsBlocked { get; set; }
-	public int? Landline { get; set; }
+	public string? Landline { get; set; }
 	public string? GroupIdentifier { get; set; }
 	public ICollection<string> ChannelIds { get; set; } = new List<string>();
 	public DateTime? CreatedAtUTC { get; set; }

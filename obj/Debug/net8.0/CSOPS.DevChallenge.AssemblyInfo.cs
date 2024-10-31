@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CSOPS.DevChallenge")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9fe4ea3f431fa1e6f49a23a2be0b8f3fb6d3090d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f56432679d354e4b8afc3f21abbbb6fe03002bbe")]
 [assembly: System.Reflection.AssemblyProductAttribute("CSOPS.DevChallenge")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CSOPS.DevChallenge")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -49,6 +49,8 @@ public class ContactInfo
 	public bool IsOptIn { get; set; }
 	public bool IsBlocked { get; set; }
 	public string? GroupIdentifier { get; set; }
-	public int? Landline { get; set; }
+
+	[StringLength(15)]
+	public string? Landline { get; set; }
 	public DateTime? CreatedAtUTC { get; set; }
 }
