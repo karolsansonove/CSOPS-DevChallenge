@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Text;
 using System.Text.Json;
 using Azure;
@@ -28,9 +29,15 @@ public class TalkClient(HttpClient client) : ITalkClient
 
         if (res.StatusCode == HttpStatusCode.Forbidden)
             throw new Exception("Could not get chats from Talk... Are we under the VPN?");
+        
+        if (res.StatusCode == HttpStatusCode.NotFound)
+            throw new Exception("Chat not found.");
+
+        if (!res.IsSuccessStatusCode)
+            throw new HttpRequestException($"Error: {res.StatusCode} when trying to search chat. Maybe the Id is wrong.");
 
         var chat = JsonSerializer.Deserialize<Chat?>(res.Content.ReadAsStream(), _options);
-        
+
         if (chat?.Id == null)
             return null;
 
