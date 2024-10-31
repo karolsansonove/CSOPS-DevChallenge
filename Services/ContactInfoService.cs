@@ -20,26 +20,23 @@ public class ContactInfoService(
 {
 	public async Task<ContactInfo?> GetAsync(string contactId)
 	{
-		var contact = await talkClient.GetContactAsync(contactId); // busca o contato na API
-		if (contact == null) return null; // se o contato não existir, retorna null
+		var contact = await talkClient.GetContactAsync(contactId);
+		if (contact == null) return null;
 
-		// verificar se o contato já existe no banco
 		var existingContact = await context.ContactInfos.FirstOrDefaultAsync(c => c.ContactId == contactId);
 
-		if (existingContact != null) // se o contato já existe
+		if (existingContact != null)
 		{   
-			// o ChangeTracker deve monitorar as mudanças do UpdateExistingContact() para atualizar no banco quando eu chamar SaveChangesAsync()
 			UpdateExistingContact(existingContact, contact);
 		}
 		else
-		{   // se o contato ainda não existe no banco
-			// adicionar como novo contato
+		{   
 			var contactInfo = CreateContactInfo(contact);
 			await context.ContactInfos.AddAsync(contactInfo);
 			existingContact = contactInfo;
 		}
 
-		noteInfoService.AddNotesAsync(contact, existingContact);
+		await noteInfoService.AddNotesAsync(contact, existingContact);
 
 		await context.SaveChangesAsync();
 		return existingContact;

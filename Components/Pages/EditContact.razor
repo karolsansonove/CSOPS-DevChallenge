@@ -2,7 +2,6 @@
 @using CSOPS.DevChallenge.Services;
 @using CSOPS.DevChallenge.Clients.Models.ContactModels;
 @using CSOPS.DevChallenge.Clients;
-@inject IContactService contactService;
 @inject ITalkClient talkClient;
 
 <nav class="navbar bg-body-tertiary mb-3">
@@ -107,18 +106,16 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        // buscar os dados do contato a partir do ContactId
         contact = await talkClient.GetContactAsync(ContactId);
 
         if (contact!.Address == null)
         {
-            contact.Address = new Address(); // Inicializa um novo objeto de endereço
+            contact.Address = new Address();
         }
     }
 
     private async Task HandleSubmit()
     {
-        // atualizar o contato
         try
         {
             await talkClient.UpdateContactAsync(contact!);
@@ -131,17 +128,4 @@ else
             error = e.Message;
         }
     }
-
-    // Contact? contact = null;
-
-    /*
-    private async Task HandleValidSubmit()
-        {
-        // Aqui você pode adicionar a lógica para enviar os dados ao backend
-        // por exemplo, uma chamada à API para atualizar o contato
-        // await HttpClient.PutAsJsonAsync($"api/contacts/{contact.Id}", contact);
-
-        NavigationManager.NavigateTo("/success"); // Redireciona para uma página de sucesso
-    }
-    */
 }

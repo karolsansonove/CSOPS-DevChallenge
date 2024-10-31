@@ -35,9 +35,6 @@ builder.Services.AddScoped<IChatInfoService, ChatInfoService>();
 builder.Services.AddScoped<IContactInfoService, ContactInfoService>();
 builder.Services.AddScoped<ISearchHistoryInfoService, SearchHistoryInfoService>();
 builder.Services.AddScoped<INoteInfoService, NoteInfoService>();
-builder.Services.AddScoped<IContactService, ContactService>();
-
-
 
 var app = builder.Build();
 

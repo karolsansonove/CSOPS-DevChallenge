@@ -21,28 +21,26 @@ public class ChatInfoService(
 {
 	public async Task<ChatInfo?> GetAsync(string chatId)
 	{
-		var chat = await talkClient.GetChatAsync(chatId); // vendo se  o Id do chat existe na API
-		if (chat == null) return null; // se não existir retorna null
+		var chat = await talkClient.GetChatAsync(chatId);
+		if (chat == null) return null;
 
-		var contactInfo = await contactInfoService.GetAsync(chat.Contact.Id); // criando um contactInfo para passar ao chatInfo depois
-		if (contactInfo == null) return null; // se esse contato não existir na API, retorna null também
+		var contactInfo = await contactInfoService.GetAsync(chat.Contact.Id);
+		if (contactInfo == null) return null;
 
 		var existingChat = await context.ChatInfos.FirstOrDefaultAsync(c => c.ChatId == chat.Id);
 		
-		if (existingChat != null) // chat já existe no contexto e no banco
+		if (existingChat != null)
 		{
-			//context.Entry(existingChat).State = EntityState.Detached; // desapachando a instância existente para evitar erro de rastreamento duplicado com o mesma entidade
-			//context.ChatInfos.Update(existingChat);
 			UpdateExistingChat(existingChat, chat, contactInfo);
 		}
-		else // se o chat não existe ainda
+		else
 		{
 			var chatInfo = CreateChatInfo(chat, contactInfo);
 			await context.ChatInfos.AddAsync(chatInfo);
 			existingChat = chatInfo;
 		}
 
-		await searchHistoryInfoService.AddToContextAsync(chat); // adicionado aqui porque precisa executar somente depois do chat existir no contexto
+		await searchHistoryInfoService.AddToContextAsync(chat);
 
 		await context.SaveChangesAsync();
 

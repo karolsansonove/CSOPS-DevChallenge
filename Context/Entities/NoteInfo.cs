@@ -19,6 +19,6 @@ namespace CSOPS.DevChallenge.Context.Entities
         public required string ContactId { get; set; } = string.Empty;
 
 		[NotMapped]
-        public required ContactInfo Contact { get; set; } // propriedade de navegação
+        public required ContactInfo Contact { get; set; }
 	}
 }

@@ -42,7 +42,7 @@ public class ChatInfo // essa classe eu uso para manipular o banco de dados
 	public required string ContactId { get; set; } = string.Empty;
 
 	[NotMapped]
-	public required ContactInfo Contact { get; set; } // apenas propriedade para navegação, por isso defini como não mapeada
+	public required ContactInfo Contact { get; set; }
 
 	public string? calculateWaitingTime()
 	{

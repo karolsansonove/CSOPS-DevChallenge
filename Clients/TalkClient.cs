@@ -54,12 +54,12 @@ public class TalkClient(HttpClient client) : ITalkClient
 
     public async Task UpdateContactAsync(Contact updatedContact)
     {
-        var contactJson = JsonSerializer.Serialize(updatedContact); // serializando o objeto Contact para JSON
+        var contactJson = JsonSerializer.Serialize(updatedContact);
         var content = new StringContent(contactJson, Encoding.UTF8, "application/json");
 
         var res = await client.PutAsync($"contacts/{updatedContact.Id}/?organizationId={OrgId}", content);
 
-        if (res.IsSuccessStatusCode) return; // valida se a operação foi bem sucedida
+        if (res.IsSuccessStatusCode) return;
 
         if (res.StatusCode == HttpStatusCode.Forbidden)
             throw new Exception("Could not update contact in Talk... Are we under the VPN?");

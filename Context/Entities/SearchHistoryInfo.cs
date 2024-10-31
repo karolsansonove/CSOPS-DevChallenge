@@ -29,9 +29,9 @@ namespace CSOPS.DevChallenge.Context.Entities
 
 		[StringLength(20)]
 		[ForeignKey(nameof(ChatInfo))]
-		public required string ChatId { get; set; } = string.Empty; // no chat já temos as informações do contato
+		public required string ChatId { get; set; } = string.Empty;
 
         [NotMapped]
-        public ChatInfo? Chat { get; set; } // navegação
+        public ChatInfo? Chat { get; set; }
     }
 }

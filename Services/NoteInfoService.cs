@@ -8,27 +8,27 @@ namespace CSOPS.DevChallenge.Services;
 
 public interface INoteInfoService
 {
-	void AddNotesAsync(Contact contact, ContactInfo contactInfo);
+	Task AddNotesAsync(Contact contact, ContactInfo contactInfo);
 }
 
 public class NoteInfoService(ChallengeContext context) : INoteInfoService
 {
-	public async void AddNotesAsync(Contact contact, ContactInfo contactInfo)
+	public async Task AddNotesAsync(Contact contact, ContactInfo contactInfo)
 	{
 		if (contact.Notes == null) return;
 
 		foreach (var note in contact.Notes)
 		{
 			var existingNote = context.NoteInfos.FirstOrDefault(n => n.Id == note.Id);
-			if (existingNote == null) // essa nota não existe ainda
+			if (existingNote == null)
 			{
 				var noteInfo = CreateNoteInfo(note, contactInfo);
 				await context.NoteInfos.AddAsync(noteInfo);
 				existingNote = noteInfo;
 			}
-			else // nota existe
+			else
 			{
-				context.NoteInfos.Update(existingNote); // atualizar no contexto
+				context.NoteInfos.Update(existingNote);
 			}
 			
 		}

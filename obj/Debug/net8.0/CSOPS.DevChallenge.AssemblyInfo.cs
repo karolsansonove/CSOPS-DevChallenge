@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CSOPS.DevChallenge")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ac4192e43fc6eba99dff5c1c4e05dc42d6dde335")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5565b0d2b34a643fa35d778f2dceb927b44d5ff9")]
 [assembly: System.Reflection.AssemblyProductAttribute("CSOPS.DevChallenge")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CSOPS.DevChallenge")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
